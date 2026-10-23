@@ -1,0 +1,34 @@
+# Local configuration and credentials
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python environments, bytecode and test caches
+**/venv/
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Local databases and uploaded runtime media
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+**/uploads/*
+!**/uploads/.gitkeep
+
+# JavaScript dependencies and generated builds
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/.vite/
+
+# Logs and local tooling
+*.log
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
