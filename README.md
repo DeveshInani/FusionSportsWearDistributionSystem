@@ -18,6 +18,18 @@ API.
 2. Follow [frontend setup](./frontend/README.md) to install frontend
    dependencies and start the development server.
 
+## Deploy the frontend to Netlify
+
+The repository includes a `netlify.toml` that builds the Vite app from
+`frontend/` and publishes its generated `dist/` directory. Connect the
+repository to Netlify and use the configuration file for the build settings.
+If build settings are entered manually, set the base directory to `frontend`,
+the build command to `npm run build`, and the publish directory to `dist`.
+
+The FastAPI backend must be deployed separately. Configure the frontend to use
+the deployed API before relying on API-backed features; Vite's local `/api`
+proxy only applies during development.
+
 Keep `backend/.env` and any other local credentials private. The root
 `.gitignore` excludes environment files, local databases, uploaded media,
 dependency folders, caches, and generated build output. The `.env.example`
