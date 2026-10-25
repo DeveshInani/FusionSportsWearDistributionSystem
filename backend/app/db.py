@@ -14,7 +14,7 @@ if DATABASE_URL.startswith("sqlite"):
 elif DATABASE_URL.startswith("mysql") and settings.DATABASE_SSL_REQUIRED:
     connect_args["ssl"] = {"check_hostname": True, "verify_mode": "required"}
     if settings.DATABASE_SSL_CA:
-        ca_path = Path(settings.DATABASE_SSL_CA)
+        ca_path = Path(settings.DATABASE_SSL_CA.replace("\\", "/"))
         if not ca_path.is_absolute():
             ca_path = Path(__file__).resolve().parents[1] / ca_path
         if not ca_path.is_file():

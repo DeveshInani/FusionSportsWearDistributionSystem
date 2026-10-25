@@ -19,7 +19,8 @@ SQLite is the default. For MySQL:
    required, the API verifies the database certificate and hostname. Set
    `DATABASE_SSL_CA` to the provider CA file if it is not available in the
    system trust store. For the provided Aiven database, the project CA is
-   stored at `backend\certs\aiven-ca.pem`.
+   stored at `backend/certs/aiven-ca.pem`; when setting the variable in
+   `backend/.env`, use `certs/aiven-ca.pem`.
 4. Set `SECRET_KEY` to a private random value of at least 32 characters and
    configure `BOOTSTRAP_ADMIN_EMAIL` and `BOOTSTRAP_ADMIN_PASSWORD`. The admin
    password must be at least 16 characters. The configured password is applied
