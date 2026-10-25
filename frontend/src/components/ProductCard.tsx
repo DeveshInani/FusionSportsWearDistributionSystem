@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { apiUrl } from '../services/api'
 import type { Product, ProductVariant } from '../types'
 
 type ProductCardProps = {
@@ -33,7 +34,7 @@ export function ProductCard({ product, onAdd, tourTarget }: ProductCardProps) {
         {product.image_url && !imageFailed ? (
           <img
             className="product-image"
-            src={product.image_url}
+            src={apiUrl(product.image_url)}
             alt={product.name}
             loading="lazy"
             onError={() => setImageFailed(true)}

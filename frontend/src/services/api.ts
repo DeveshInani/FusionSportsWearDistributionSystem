@@ -1,4 +1,12 @@
-const API_BASE = '/api'
+const API_BASE = import.meta.env.VITE_API_BASE_URL?.trim().replace(/\/+$/, '') || '/api'
+
+export function apiUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path
+  const endpoint = path.startsWith('/api/')
+    ? path.slice('/api'.length)
+    : path
+  return `${API_BASE}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`
+}
 
 export async function apiRequest<T>(
   path: string,
@@ -11,7 +19,7 @@ export async function apiRequest<T>(
   }
   if (token) headers.set('Authorization', `Bearer ${token}`)
 
-  const response = await fetch(`${API_BASE}${path}`, { ...options, headers })
+  const response = await fetch(apiUrl(path), { ...options, headers })
   const text = await response.text()
   if (!response.ok) {
     let message = text || `Request failed (${response.status})`
@@ -35,7 +43,7 @@ export async function downloadAdminInvoice(orderId: number, token: string) {
 }
 
 async function downloadPdf(path: string, token: string, filename: string) {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(apiUrl(path), {
     headers: { Authorization: `Bearer ${token}` },
   })
   if (!response.ok) {

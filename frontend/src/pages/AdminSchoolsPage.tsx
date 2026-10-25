@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { apiRequest } from '../services/api'
+import { apiRequest, apiUrl } from '../services/api'
 import type { AdminCatalogItem, School, SchoolClass } from '../types'
 
 type AdminSchoolsPageProps = {
@@ -468,7 +468,7 @@ function CatalogStockRow({
   return (
     <article className="school-catalog-row">
       <div className="school-catalog-info">
-        {item.image_url && <img src={item.image_url} alt="" />}
+        {item.image_url && <img src={apiUrl(item.image_url)} alt="" />}
         <div><strong>{item.name}</strong><span>{item.category} · {item.gender} · Size {item.size}{item.color ? ` · ${item.color}` : ''}</span></div>
       </div>
       <label>Price<input aria-label={`Price for ${item.name} size ${item.size}`} type="number" min="0.01" step="0.01" value={price} onChange={(event) => setPrice(event.target.value)} /></label>
